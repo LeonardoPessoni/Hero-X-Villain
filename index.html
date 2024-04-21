@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova - Jogo Herói e Vilão</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" aria-live="polite">
+        <!-- Status do jogo -->
+        <section class="status" aria-label="Status do jogo">
+            <!-- Título da briga -->
+            <p class="briga-animado">Briga de Quem segura melhor na varinha</p>
+            <!-- Mensagem de status -->
+            <p>Status: {{ mensagemStatus }}</p>
+        </section>
+        <!-- Personagens -->
+        <div class="concorrentes">
+            <!-- Herói -->
+            <article class="personagem" id="hero" aria-label="Herói">
+                <!-- Nome do herói -->
+                <h1 class="degrade-animado">Harry Potter Drogadão</h1>
+                <!-- Barra de vida do herói -->
+                <div class="barra-vida" :style="{width: heroi.vida + '%'}" aria-valuenow="{{ heroi.vida }}" aria-valuemin="0" aria-valuemax="100" role="progressbar">{{ heroi.vida }}%</div>
+                <!-- Imagem do herói -->
+                <div class="sprite">
+                    <img :src="heroiImg" alt="Imagem do herói" role="img" aria-label="Herói em ação">
+                </div>
+                <!-- Botões de ação do herói -->
+                <div class="acoes">
+                    <button @click="atacar(true)"><i class="fa fa-gun"></i> Atacar</button>
+                    <button @click="defender(true)"><i class="fa fa-shield-alt"></i> Defender</button>
+                    <button @click="usarPocao(true)"><i class="fa fa-flask"></i> Usar poção</button>
+                    <button @click="correr(true)"><i class="fa fa-running"></i> Correr</button>
+                </div>
+            </article>
+            <!-- Vilão -->
+            <article class="personagem" id="boss" aria-label="Vilão">
+                <!-- Nome do vilão -->
+                <h1 class="degrade-animado">Voldemort Sem Nariz Putasso</h1>
+                <!-- Barra de vida do vilão -->
+                <div class="barra-vida" :style="{width: vilao.vida + '%'}" aria-valuenow="{{ vilao.vida }}" aria-valuemin="0" aria-valuemax="100" role="progressbar">{{ vilao.vida }}%</div>
+                <!-- Imagem do vilão -->
+                <div class="sprite" id="vilao">
+                    <img :src="vilaoImg" alt="Imagem do vilão" role="img" aria-label="Vilão em ação">
+                </div>
+            </article>
+        </div>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>
